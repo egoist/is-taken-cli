@@ -43,7 +43,7 @@ if (name) {
 						msg += '\n' + chalk.gray(taken.description)
 					}
 				} else {
-					msg = taken.name + 'is taken'
+					msg = taken.name + ' is taken'
 				}
 			} else {
 				msg = name + ' is yours! Let the hacking begin! 🎉'
