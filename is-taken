@@ -5,6 +5,7 @@ var minimist = require('minimist')
 var update = require('update-notifier')
 var chalk = require('chalk')
 var isTaken = require('is-taken')
+var Spin = require('io-spin')
 var pkg = require('./package')
 var argv = minimist(process.argv.slice(2))
 
@@ -26,6 +27,8 @@ if (argv.v || argv.version) {
  */
 var name = argv._[0]
 if (name) {
+	var spin = new Spin()
+	spin.start()
 	isTaken(name)
 		.then(function (taken) {
 			var msg
@@ -42,9 +45,11 @@ if (name) {
 			} else {
 				msg = name + ' is yours! Let the hacking begin! 🎉'
 			}
+			spin.stop()
 			console.log(msg)
 		})
 		.catch(function (e) {
+			spin.stop()
 			throw e
 		})
 }
