@@ -26,9 +26,12 @@ if (argv.v || argv.version) {
  * Resolve name
  */
 var name = argv._[0]
+var silent = argv.silent
 if (name) {
-	var spin = new Spin()
-	spin.start()
+	if (!silent) {
+		var spin = new Spin()
+		spin.start()
+	}
 	isTaken(name)
 		.then(function (taken) {
 			var msg
@@ -45,11 +48,11 @@ if (name) {
 			} else {
 				msg = name + ' is yours! Let the hacking begin! 🎉'
 			}
-			spin.stop()
+			!silent && spin.stop()
 			console.log(msg)
 		})
 		.catch(function (e) {
-			spin.stop()
+			!silent && spin.stop()
 			throw e
 		})
 }
