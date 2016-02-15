@@ -6,6 +6,7 @@ var update = require('update-notifier')
 var chalk = require('chalk')
 var isTaken = require('is-taken')
 var Spin = require('io-spin')
+var symbols = require('log-symbols')
 var pkg = require('./package')
 var argv = minimist(process.argv.slice(2))
 
@@ -46,8 +47,9 @@ if (name) {
 				} else {
 					msg = taken.name + ' is taken ' + chalk.gray('https://npmjs.com/package/' + name)
 				}
+				msg = symbols.error + ' ' + msg
 			} else {
-				msg = name + ' is yours! Let the hacking begin! 🎉'
+				msg = symbols.success + ' ' + name + ' is yours! Let the hacking begin! 🎉'
 			}
 			!silent && spin.stop()
 			console.log(msg)
