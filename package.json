@@ -1,0 +1,41 @@
+{
+  "name": "is-taken-cli",
+  "version": "0.0.0",
+  "description": "A simple cli program to check if an NPM package name is taken.",
+  "license": "MIT",
+  "repository": "egoist/is-taken-cli",
+  "author": {
+    "name": "EGOIST",
+    "email": "0x142857@gmail.com",
+    "url": "github.com/egoist"
+  },
+  "bin": {
+    "is-taken": "is-taken"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "xo && ava"
+  },
+  "files": [
+    "is-taken"
+  ],
+  "keywords": [
+    "name",
+    "npm"
+  ],
+  "dependencies": {
+    "chalk": "^1.1.1",
+    "is-taken": "^0.0.1",
+    "minimist": "^1.2.0"
+  },
+  "devDependencies": {
+    "ava": "^0.10.0",
+    "execa": "^0.2.2",
+    "xo": "^0.12.1"
+  },
+  "xo": {
+    "semicolon": false
+  }
+}

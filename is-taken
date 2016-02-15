@@ -1,0 +1,50 @@
+#!/usr/bin/env node
+'use strict'
+
+var minimist = require('minimist')
+var update = require('update-notifier')
+var chalk = require('chalk')
+var isTaken = require('is-taken')
+var pkg = require('./package')
+var argv = minimist(process.argv.slice(2))
+
+/**
+ * Update notify
+ */
+update({pkg: pkg}).notify()
+
+/**
+ * Version
+ */
+if (argv.v || argv.version) {
+	console.log(pkg.version)
+	process.exit()
+}
+
+/**
+ * Resolve name
+ */
+var name = argv._[0]
+if (name) {
+	isTaken(name)
+		.then(function (taken) {
+			var msg
+			if (taken) {
+				if (taken.author && taken.author.name) {
+					msg = taken.name + ' is owned by ' + taken.author.name +
+						(taken.author.email ? '<' + taken.author.email + '>' : '')
+					if (taken.description) {
+						msg += '\n' + chalk.gray(taken.description)
+					}
+				} else {
+					msg = taken.name + 'is taken'
+				}
+			} else {
+				msg = name + ' is yours! Let the hacking begin! 🎉'
+			}
+			console.log(msg)
+		})
+		.catch(function (e) {
+			throw e
+		})
+}
