@@ -28,7 +28,8 @@
   "dependencies": {
     "chalk": "^1.1.1",
     "is-taken": "^0.0.1",
-    "minimist": "^1.2.0"
+    "minimist": "^1.2.0",
+    "update-notifier": "^0.6.0"
   },
   "devDependencies": {
     "ava": "^0.10.0",
