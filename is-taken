@@ -40,10 +40,11 @@ if (name) {
 					msg = taken.name + ' is owned by ' + taken.author.name +
 						(taken.author.email ? '<' + taken.author.email + '>' : '')
 					if (taken.description) {
-						msg += '\n' + chalk.gray(taken.description)
+						msg += '\n' + chalk.gray(taken.description) + '\n' +
+							chalk.gray('https://npmjs.com/package/' + taken.name)
 					}
 				} else {
-					msg = taken.name + ' is taken'
+					msg = taken.name + ' is taken ' + chalk.gray('https://npmjs.com/package/' + name)
 				}
 			} else {
 				msg = name + ' is yours! Let the hacking begin! 🎉'
