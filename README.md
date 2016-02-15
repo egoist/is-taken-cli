@@ -2,7 +2,7 @@
 
 > A simple cli program to check if an NPM package name is taken.
 
-![preview](https://ooo.0o0.ooo/2016/02/15/56c1ead06acea.png)
+![preview](https://ooo.0o0.ooo/2016/02/15/56c1f4d207bbe.png)
 
 ## Install
 
