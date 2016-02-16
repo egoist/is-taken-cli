@@ -25,6 +25,13 @@ if (argv.v || argv.version) {
 }
 
 /**
+ * Set reigstry url to China mirror
+ */
+if (argv.cn) {
+	process.env.NPM_REGISTRY_URL = 'https://registry.npm.taobao.org/'
+}
+
+/**
  * Resolve name
  */
 var names = argv._

@@ -16,6 +16,8 @@ $ npm install -g is-taken-cli
 $ is-taken name
 # or multi names
 $ is-taken chalkla ava webpack koaxx react vue
+# much faster if you are located in China
+$ is-taken fuck great fire wall --cn
 ```
 
 ## Related
