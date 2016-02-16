@@ -7,7 +7,7 @@ var chalk = require('chalk')
 var isTaken = require('is-taken')
 var Spin = require('io-spin')
 var symbols = require('log-symbols')
-var hr = require('fancy-hr')
+var Promise = require('es6-promise').Promise
 var pkg = require('./package')
 var argv = minimist(process.argv.slice(2))
 
