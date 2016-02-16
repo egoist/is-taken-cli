@@ -7,6 +7,7 @@ var chalk = require('chalk')
 var isTaken = require('is-taken')
 var Spin = require('io-spin')
 var symbols = require('log-symbols')
+var hr = require('fancy-hr')
 var pkg = require('./package')
 var argv = minimist(process.argv.slice(2))
 
@@ -26,36 +27,54 @@ if (argv.v || argv.version) {
 /**
  * Resolve name
  */
-var name = argv._[0]
+var names = argv._
 var silent = argv.silent
-if (name) {
+if (names.length > 0) {
 	if (!silent) {
 		var spin = new Spin()
 		spin.start()
 	}
-	isTaken(name)
-		.then(function (taken) {
-			var msg
-			if (taken) {
-				if (taken.author && taken.author.name) {
-					msg = taken.name + ' is owned by ' + taken.author.name +
-						(taken.author.email ? '<' + taken.author.email + '>' : '')
-					if (taken.description) {
-						msg += '\n' + chalk.gray(taken.description) + '\n' +
-							chalk.gray('https://npmjs.com/package/' + taken.name)
-					}
-				} else {
-					msg = taken.name + ' is taken ' + chalk.gray('https://npmjs.com/package/' + name)
-				}
-				msg = symbols.error + ' ' + msg
-			} else {
-				msg = symbols.success + ' ' + name + ' is yours! Let the hacking begin! 🎉'
-			}
+	Promise.all(names.map(handle))
+		.then(function (takens) {
 			!silent && spin.stop()
-			console.log(msg)
+			console.log(takens.join('\n'))
 		})
 		.catch(function (e) {
 			!silent && spin.stop()
 			throw e
 		})
+}
+
+/**
+ * Handle a single name
+ */
+function handle(name) {
+	return isTaken(name)
+		.then(function (taken) {
+			var msg, status = 'red'
+			if (taken) {
+				if (taken.author && taken.author.name) {
+					msg = taken.author.name + (taken.author.email ? ' <' + taken.author.email + '>' : '')
+					if (taken.description) {
+						msg += '\n' + chalk.gray(taken.description) + '\n' +
+							chalk.gray('https://npmjs.com/package/' + taken.name)
+					}
+				} else {
+					msg = chalk.gray('https://npmjs.com/package/' + name)
+				}
+			} else {
+				status = 'green'
+				msg = 'It is yours! Let the hacking begin! 🎉'
+			}
+			return addHr(name, msg, status)
+		})
+}
+
+/**
+ * Add hr heading
+ */
+function addHr(name, msg, status) {
+	var heading = symbols[status === 'red' ? 'error' : 'success'] +
+		' ' + chalk[status](name) + '\n'
+	return heading + msg
 }
