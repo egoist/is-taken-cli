@@ -2,7 +2,7 @@
 
 > A simple cli program to check if an NPM package name is taken.
 
-![preview](https://ooo.0o0.ooo/2016/02/15/56c1f4d207bbe.png)
+![preview](https://ooo.0o0.ooo/2016/02/15/56c28e787c059.png)
 
 ## Install
 
@@ -15,7 +15,7 @@ $ npm install -g is-taken-cli
 ```bash
 $ is-taken name
 # or multi names
-$ is-taken chalk ava webpack koa react vue
+$ is-taken chalkla ava webpack koaxx react vue
 ```
 
 ## Related
