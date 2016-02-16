@@ -6,7 +6,7 @@
 
 ## Install
 
-```
+```bash
 $ npm install -g is-taken-cli
 ```
 
@@ -14,6 +14,8 @@ $ npm install -g is-taken-cli
 
 ```bash
 $ is-taken name
+# or multi names
+$ is-taken chalk ava webpack koa react vue
 ```
 
 ## Related
