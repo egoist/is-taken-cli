@@ -48,7 +48,7 @@ if (names.length > 0) {
 		})
 		.catch(function (e) {
 			!silent && spin.stop()
-			throw e
+			console.log(e.message)
 		})
 }
 
@@ -74,9 +74,6 @@ function handle(name) {
 				msg = 'It is yours! Let the hacking begin! 🎉'
 			}
 			return addHr(name, msg, status)
-		})
-		.catch(function (e) {
-			console.log(e.message)
 		})
 }
 
