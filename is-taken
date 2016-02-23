@@ -8,6 +8,7 @@ var isTaken = require('is-taken')
 var Spin = require('io-spin')
 var symbols = require('log-symbols')
 var Promise = require('es6-promise').Promise
+var toKebab = require('camel2kebab')
 var pkg = require('./package')
 var argv = minimist(process.argv.slice(2))
 
@@ -73,7 +74,7 @@ function handle(name) {
 				status = 'green'
 				msg = 'It is yours! Let the hacking begin! 🎉'
 			}
-			return addHr(taken.name, msg, status)
+			return addHr(toKebab(name), msg, status)
 		})
 }
 
