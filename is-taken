@@ -73,7 +73,7 @@ function handle(name) {
 				status = 'green'
 				msg = 'It is yours! Let the hacking begin! 🎉'
 			}
-			return addHr(name, msg, status)
+			return addHr(taken.name, msg, status)
 		})
 }
 
