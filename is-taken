@@ -25,11 +25,12 @@ if (argv.v || argv.version) {
 	process.exit()
 }
 
+const opts = {}
 /**
  * Set reigstry url to China mirror
  */
 if (argv.cn) {
-	process.env.NPM_REGISTRY_URL = 'https://registry.npm.taobao.org/'
+	opts.registry = 'https://registry.npm.taobao.org/'
 }
 
 /**
@@ -57,7 +58,7 @@ if (names.length > 0) {
  * Handle a single name
  */
 function handle(name) {
-	return isTaken(name)
+	return isTaken(name, opts)
 		.then(function (taken) {
 			var msg, status = 'red'
 			if (taken) {
